@@ -11,6 +11,8 @@ import CartPage from './pages/customer/CartPage';
 import OrderHistoryPage from './pages/customer/OrderHistoryPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProfilePage from './pages/customer/ProfilePage';
+import AddProductPage from './pages/admin/AddProductPage';
+import EditProductPage from './pages/admin/EditProductPage';
 
 
 const Navigation = () => {
@@ -106,7 +108,23 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
           } />
+          <Route path="/admin" element={
+  <ProtectedRoute allowedRoles={['admin']}>
+    <AdminDashboard />
+  </ProtectedRoute>
+} />
+<Route path="/admin/add" element={
+  <ProtectedRoute allowedRoles={['admin']}>
+    <AddProductPage />
+  </ProtectedRoute>
+} />
+<Route path="/admin/edit/:id" element={
+  <ProtectedRoute allowedRoles={['admin']}>
+    <EditProductPage />
+  </ProtectedRoute>
+} />
         </Routes>
+
       </Router>
     </AuthProvider>
   );
