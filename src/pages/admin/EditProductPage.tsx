@@ -2,40 +2,30 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProduct } from '../../context/ProductContext';
 import { useState, useEffect } from 'react';
-import type { Product } from '../../types/Product';
+import { useToast } from '../../context/ToastContext';
 
 const EditProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { products, updateProduct } = useProduct();
+  const { showToast } = useToast();
 
   const product = products.find((p) => p.id === Number(id));
-
-  const [form, setForm] = useState<Product | null>(product || null);
+  const [form, setForm] = useState(product);
 
   useEffect(() => {
-    if (!product) {
-      alert('Product not found');
-      navigate('/admin');
-    }
+    if (!product) navigate('/admin');
   }, [product, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!form) return;
-    setForm({
-      ...form,
-      [e.target.name]: e.target.name === 'price' || e.target.name === 'quantity'
-        ? Number(e.target.value)
-        : e.target.value,
-    });
+    setForm((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form) {
-      updateProduct(form);
-      navigate('/admin');
-    }
+    updateProduct({ ...form, price: Number(form?.price), quantity: Number(form?.quantity) });
+    showToast('Product updated!');
+    navigate('/admin');
   };
 
   if (!form) return null;
@@ -46,9 +36,7 @@ const EditProductPage = () => {
       <form onSubmit={handleSubmit}>
         {['name', 'description', 'price', 'quantity', 'image'].map((field) => (
           <div className="mb-3" key={field}>
-            <label className="form-label">
-              {field.charAt(0).toUpperCase() + field.slice(1)}
-            </label>
+            <label className="form-label">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
             <input
               name={field}
               value={(form as any)[field]}

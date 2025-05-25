@@ -1,9 +1,11 @@
 // src/pages/customer/ProfilePage.tsx
 import { useState } from 'react';
 import { useAuth } from '../../auth/AuthContext';
+import { useToast } from '../../context/ToastContext';
 
 const ProfilePage = () => {
   const { user, updateProfile } = useAuth();
+  const { showToast } = useToast();
   const [name, setName] = useState(user?.username || '');
   const [email, setEmail] = useState(user?.email || '');
   const [address, setAddress] = useState(user?.address || '');
@@ -11,7 +13,7 @@ const ProfilePage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateProfile({ username: name, email, address });
-    alert('Profile updated!');
+    showToast('Profile updated successfully!');
   };
 
   return (

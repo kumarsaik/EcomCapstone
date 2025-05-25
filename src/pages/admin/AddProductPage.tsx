@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProduct } from '../../context/ProductContext';
+import { useToast } from '../../context/ToastContext';
 
 const AddProductPage = () => {
   const { addProduct } = useProduct();
+  const { showToast } = useToast();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -26,6 +28,7 @@ const AddProductPage = () => {
       image: form.image,
     };
     addProduct(newProduct);
+    showToast('Product added successfully!');
     navigate('/admin');
   };
 

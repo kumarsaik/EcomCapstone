@@ -1,3 +1,4 @@
+// src/context/ToastContext.tsx
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface ToastContextType {
@@ -33,6 +34,6 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 
 export const useToast = () => {
   const context = useContext(ToastContext);
-  if (!context) throw new Error('useToast must be used inside ToastProvider');
+  if (!context) throw new Error('useToast must be used within ToastProvider');
   return context;
 };
