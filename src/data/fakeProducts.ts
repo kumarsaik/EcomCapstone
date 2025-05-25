@@ -1,0 +1,43 @@
+// src/data/fakeProducts.ts
+export const fakeProducts: Product[] = [
+  {
+    id: 1,
+    name: 'Gaming Laptop',
+    description: 'High-performance laptop for gaming and productivity.',
+    price: 1499,
+    quantity: 5,
+    image: 'https://images.unsplash.com/photo-1611186871348-b8e1ab9d0ee5?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 2,
+    name: 'Smartphone',
+    description: 'Sleek smartphone with AMOLED display and long battery life.',
+    price: 899,
+    quantity: 10,
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 3,
+    name: 'Wireless Headphones',
+    description: 'Noise-cancelling headphones with crystal clear audio.',
+    price: 299,
+    quantity: 8,
+    image: 'https://images.unsplash.com/photo-1585386959984-a41552262c74?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 4,
+    name: 'Smartwatch',
+    description: 'Track fitness and get notifications on the go.',
+    price: 199,
+    quantity: 15,
+    image: 'https://images.unsplash.com/photo-1606813902784-ff3d63be65a5?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    id: 5,
+    name: 'Bluetooth Speaker',
+    description: 'Portable speaker with powerful bass and long battery.',
+    price: 129,
+    quantity: 12,
+    image: 'https://images.unsplash.com/photo-1624561172888-ac93b2f4a5a2?auto=format&fit=crop&w=600&q=80',
+  },
+];
